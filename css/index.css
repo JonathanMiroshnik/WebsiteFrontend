@@ -5,7 +5,7 @@
   --undertext-color: black;
   --border-separator-color: gray;
   --border-big-separator-color: black;
-  
+
   /* Main background color */
   --global-background-color: white;
 
@@ -13,7 +13,7 @@
   --global-secondary-background-color: rgb(175, 175, 175);
 
   /* Used for text, buttons, borders */
-  --main-contrast-color: #008B8B;
+  --main-contrast-color: #008b8b;
   --main-slight-contrast-color: #004242;
 
   /* TODO: figure out how to do mobile cutoff global, see: https://bholmes.dev/blog/alternative-to-css-variable-media-queries/ */
@@ -26,7 +26,7 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;  
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Reset some default browser styles */
@@ -35,10 +35,10 @@
   padding: 0;
   /* box-sizing: border-box; */
 }
-  
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 /* Bootstrap import removed - using CDN instead */
@@ -56,25 +56,27 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  
+
   min-height: 100%;
   height: 100%;
   margin: 0;
 
   background-color: var(--global-background-color);
   color: var(--title-color);
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 
   line-height: 1.6;
 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: var(--title-color);
 }
 
@@ -89,7 +91,9 @@ a:hover {
 }
 
 /* Text box styles */
-input[type="text"], input[type="email"], textarea {
+input[type="text"],
+input[type="email"],
+textarea {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -102,7 +106,9 @@ input[type="text"], input[type="email"], textarea {
   transition: border-color 0.3s ease;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
   border-color: #03dac6;
   outline: none;
 }
@@ -117,7 +123,9 @@ button {
   border: 1px solid var(--main-slight-contrast-color);
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 button:hover {
@@ -172,7 +180,7 @@ textarea {
 
 /* ---------------------------------------------- Content container styles ---------------------------------------------- */
 /* Content container styles */
-.contentContainer {
+.content-container {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -235,10 +243,10 @@ textarea {
 
   button {
     background-color: var(--global-background-color);
-    color: white;  
+    color: white;
   }
 }
-  
+
 @media (prefers-color-scheme: light) {
   :root {
     background-color: #ffffff;
@@ -252,7 +260,7 @@ textarea {
     --global-background-color: white;
     --global-secondary-background-color: rgb(216, 216, 216);
 
-    --main-contrast-color: #008B8B;
+    --main-contrast-color: #008b8b;
     --main-slight-contrast-color: #004242;
   }
 

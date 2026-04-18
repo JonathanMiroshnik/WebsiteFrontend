@@ -14,7 +14,7 @@
 }
  */
 
- .website-navbar {
+.website-navbar {
   display: flex;
   justify-content: left;
   align-items: center;
@@ -28,7 +28,7 @@
   box-shadow: 0 2px 5px var(--global-background-color);
   z-index: 1000;
 }
-  
+
 .website-navbar button {
   padding: 10px 20px;
   font-size: 1em;
@@ -38,7 +38,10 @@
   border: 2px solid var(--main-slight-contrast-color);
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease,
+    border-color 0.3s ease;
 }
 
 .website-navbar button:hover {
@@ -56,15 +59,15 @@
   cursor: not-allowed;
 }
 
-  /* Better mobile handling */
+/* Better mobile handling */
 @media (max-width: 640px) {
   .website-navbar {
     gap: 0.75rem;
     padding: 0.75rem 0;
-     /* Center items on smallest screens */
+    /* Center items on smallest screens */
     /* justify-content: center; */
   }
-  
+
   .website-navbar button {
     /* Slightly smaller padding */
     /* padding: 0.4rem 0.8rem; */

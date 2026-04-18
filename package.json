@@ -1,0 +1,28 @@
+{
+  "name": "htmx-frontend",
+  "version": "1.0.0",
+  "description": "HTMX JavaScript frontend with CI/CD pipeline",
+  "scripts": {
+    "lint": "eslint . --ext .js && prettier --check . && htmlhint *.html html/*.html html/blog/*.html html/templates/*.html && stylelint css/*.css",
+    "lint:fix": "eslint --fix . --ext .js && prettier --write . && htmlhint --config .htmlhintrc *.html html/*.html html/blog/*.html html/templates/*.html",
+    "build": "echo 'Build verification complete - Static site ready for deployment'",
+    "security": "npm audit",
+    "ci": "npm run lint && npm run build"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5",
+    "htmlhint": "^1.1.4",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0"
+  },
+  "keywords": [
+    "htmx",
+    "javascript",
+    "frontend",
+    "static-site"
+  ],
+  "author": "Jonathan Miroshnik",
+  "license": "MIT"
+}

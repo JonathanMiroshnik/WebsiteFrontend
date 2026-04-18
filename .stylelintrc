@@ -1,0 +1,5 @@
+{
+  "extends": [],
+  "rules": {},
+  "ignoreFiles": ["**/node_modules/**", "**/dist/**"]
+}

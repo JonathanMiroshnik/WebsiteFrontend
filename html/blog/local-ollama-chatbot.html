@@ -1,4 +1,5 @@
-<div class="contentContainer">
+<!doctype html>
+<div class="content-container">
   <div class="blog-post-content">
     <h1>Chatting with your Local Ollama</h1>
 
@@ -11,33 +12,27 @@
         border-radius: 4px;
       "
     >
-      <h3 style="margin-top: 0; color: var(--main-contrast-color)">
-        How to use this
-      </h3>
+      <h3 style="margin-top: 0; color: var(--main-contrast-color)">How to use this</h3>
       <p>
         If you're running
-        <a href="https://ollama.com/" target="_blank">Ollama</a> locally, you
-        have a powerful LLM API running right on your machine. Because your
-        browser is also running locally, this webpage can talk directly to your
-        Ollama instance without sending any of your data to my server!
+        <a href="https://ollama.com/" target="_blank">Ollama</a> locally, you have a powerful LLM
+        API running right on your machine. Because your browser is also running locally, this
+        webpage can talk directly to your Ollama instance without sending any of your data to my
+        server!
       </p>
 
       <p><strong>Step 1: Install and Start Ollama</strong></p>
       <p>
-        Make sure you have Ollama installed and running. By default, web
-        browsers block web pages from making requests to local servers for
-        security reasons (CORS). To allow this webpage to talk to your local
-        Ollama, you must start Ollama with the
-        <code>OLLAMA_ORIGINS</code> environment variable set to allow all
-        origins.
+        Make sure you have Ollama installed and running. By default, web browsers block web pages
+        from making requests to local servers for security reasons (CORS). To allow this webpage to
+        talk to your local Ollama, you must start Ollama with the
+        <code>OLLAMA_ORIGINS</code> environment variable set to allow all origins.
       </p>
 
       <p>
         <em
-          >Note: Your local host is usually
-          <code>http://localhost:11434</code> or
-          <code>http://127.0.0.1:11434</code> depending on your system
-          setup.</em
+          >Note: Your local host is usually <code>http://localhost:11434</code> or
+          <code>http://127.0.0.1:11434</code> depending on your system setup.</em
         >
       </p>
 
@@ -53,10 +48,9 @@
 
       <p><strong>Step 2: Connect</strong></p>
       <p>
-        Once Ollama is running with CORS enabled, you can use the "Fetch
-        Available Models" button below to load your installed models, or
-        manually type the model name (e.g., <code>llama3</code>) and start
-        chatting!
+        Once Ollama is running with CORS enabled, you can use the "Fetch Available Models" button
+        below to load your installed models, or manually type the model name (e.g.,
+        <code>llama3</code>) and start chatting!
       </p>
     </div>
 
@@ -73,12 +67,7 @@
         Local Chatbot
         <span
           id="ollama-connection-status"
-          style="
-            font-size: 0.8em;
-            margin-left: 10px;
-            font-weight: normal;
-            vertical-align: middle;
-          "
+          style="font-size: 0.8em; margin-left: 10px; font-weight: normal; vertical-align: middle"
         ></span>
       </h3>
 
@@ -92,9 +81,7 @@
         "
       >
         <div>
-          <label
-            for="ollama-host"
-            style="font-weight: bold; display: block; margin-bottom: 5px"
+          <label for="ollama-host" style="font-weight: bold; display: block; margin-bottom: 5px"
             >Host & Port:</label
           >
           <div style="display: flex; gap: 10px; align-items: center">
@@ -102,12 +89,7 @@
               type="text"
               id="ollama-host"
               value="http://localhost:11434"
-              style="
-                width: 200px;
-                margin: 0;
-                padding: 8px;
-                box-sizing: border-box;
-              "
+              style="width: 200px; margin: 0; padding: 8px; box-sizing: border-box"
             />
             <button
               id="check-connection-btn"
@@ -120,9 +102,7 @@
           </div>
         </div>
         <div style="flex-grow: 1">
-          <label
-            for="ollama-model"
-            style="font-weight: bold; display: block; margin-bottom: 5px"
+          <label for="ollama-model" style="font-weight: bold; display: block; margin-bottom: 5px"
             >Model:</label
           >
           <div style="display: flex; gap: 10px">
@@ -138,9 +118,7 @@
                 width: 200px;
                 box-sizing: border-box;
               "
-              onchange="
-                document.getElementById('ollama-model').value = this.value
-              "
+              onchange="document.getElementById('ollama-model').value = this.value"
             >
               <option value="">Select a model...</option>
             </select>
@@ -148,12 +126,7 @@
               type="text"
               id="ollama-model"
               value="llama3"
-              style="
-                width: 150px;
-                margin: 0;
-                padding: 8px;
-                box-sizing: border-box;
-              "
+              style="width: 150px; margin: 0; padding: 8px; box-sizing: border-box"
               placeholder="e.g. llama3"
             />
             <button
@@ -186,12 +159,7 @@
       >
         <p
           id="ollama-placeholder"
-          style="
-            color: var(--description-color);
-            font-style: italic;
-            margin: 0;
-            text-align: center;
-          "
+          style="color: var(--description-color); font-style: italic; margin: 0; text-align: center"
         >
           Chat history will appear here...
         </p>
@@ -248,8 +216,7 @@
         const statusSpan = document.getElementById("ollama-connection-status");
         const checkBtn = document.getElementById("check-connection-btn");
 
-        statusSpan.innerHTML =
-          '<span style="color: #666;">⏳ Checking...</span>';
+        statusSpan.innerHTML = '<span style="color: #666;">⏳ Checking...</span>';
         if (checkBtn) checkBtn.disabled = true;
 
         try {
@@ -268,8 +235,7 @@
             statusSpan.innerHTML =
               '<span style="color: green; font-weight: bold;">✓ Connected</span>';
           } else {
-            statusSpan.innerHTML =
-              '<span style="color: red; font-weight: bold;">✗ Error</span>';
+            statusSpan.innerHTML = '<span style="color: red; font-weight: bold;">✗ Error</span>';
           }
         } catch (error) {
           statusSpan.innerHTML =
@@ -328,10 +294,9 @@
 
           if (models && models.length > 0) {
             // Clear existing options except the first one
-            modelSelect.innerHTML =
-              '<option value="">Select a model...</option>';
+            modelSelect.innerHTML = '<option value="">Select a model...</option>';
 
-            models.forEach((model) => {
+            models.forEach(model => {
               const option = document.createElement("option");
               option.value = model.name;
               option.textContent = model.name;
@@ -353,14 +318,14 @@
             }, 3000);
           } else {
             alert(
-              'Connected to Ollama, but no models found. Try pulling one with "ollama pull llama3"',
+              'Connected to Ollama, but no models found. Try pulling one with "ollama pull llama3"'
             );
             fetchBtn.textContent = "Fetch Available Models";
           }
         } catch (error) {
           console.error("Error fetching models:", error);
           alert(
-            'Could not connect to Ollama to fetch models.\n\nMake sure it is running and OLLAMA_ORIGINS="*" is set.',
+            'Could not connect to Ollama to fetch models.\n\nMake sure it is running and OLLAMA_ORIGINS="*" is set.'
           );
           fetchBtn.textContent = "Fetch Available Models";
           modelSelect.style.display = "none";
@@ -444,9 +409,7 @@
           });
 
           if (!response.ok) {
-            throw new Error(
-              "Network response was not ok: " + response.statusText,
-            );
+            throw new Error("Network response was not ok: " + response.statusText);
           }
 
           const data = await response.json();
@@ -474,14 +437,12 @@
       }
 
       // Add enter key support
-      document
-        .getElementById("ollama-prompt")
-        .addEventListener("keypress", function (e) {
-          if (e.key === "Enter" && !e.shiftKey) {
-            e.preventDefault();
-            sendToOllama();
-          }
-        });
+      document.getElementById("ollama-prompt").addEventListener("keypress", function (e) {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          sendToOllama();
+        }
+      });
     </script>
   </div>
 </div>

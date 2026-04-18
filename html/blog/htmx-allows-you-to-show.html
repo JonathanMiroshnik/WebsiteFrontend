@@ -1,72 +1,107 @@
-<div class="contentContainer">
-	<div class="blog-post-content">
-		<h1>Let me send you a component - HTMX</h1>
-		<p>Unlike the most popular paradigm in frontend development devoloped in the last few years, 
-            single page applications, HTMX is based on Multi page applications.
-            This essentially means that the frontend is not only constantly talking to the backend, 
-            but the content that it gets is not just the specific information that we need for the page,
-            It's the parts of the page itself that are transferred over.</p>
-        <br>
-        <p>In most modern frontend frameworks, you set up your components as primary pieces of code, which exist as compiled files on the Client side.
-        For example, in React, you might have a component called `Button.js`. This component was most likely compiled before the client ever touched the frontend.
-        This both limits and speeds up the development process.</p>
-        <br>
-        <p>However, with HTMX, you're primary role is to send these components from the backend, where code is much more easily hidden.
-        You can of course get similar effects from single page applications, 
-        but the way these frameworks are set up limits you from this front-end approach.</p>
-        <br>
-        <p>This is not a new idea, but it's interesting nonetheless, especially when you consider all the new back-end capabilities that have become avaliable in the last few years.
-        So, this old type approach deserves to be explored.</p>
-        <br>
-        <p>The following button will send a request to the backend to get a component, and then display it in the frontend.
-        Sometimes, an input field will show up as well, and what you write in that input field will be the component that an AI will attempt to create.
-        To make sure that it is not abused, I'm trying to randomly limit the daily requests to ??????.</p>
-        <br>
-        <button class="btn btn-primary" hx-get="/htmx/exchange-button" hx-target="#exchange-button-content">Generate!</button>
-        <div id="exchange-button-content">
-            <p>Content will be displayed here</p>
-        </div>
+<!doctype html>
+<div class="content-container">
+  <div class="blog-post-content">
+    <h1>Let me send you a component - HTMX</h1>
+    <p>
+      Unlike the most popular paradigm in frontend development devoloped in the last few years,
+      single page applications, HTMX is based on Multi page applications. This essentially means
+      that the frontend is not only constantly talking to the backend, but the content that it gets
+      is not just the specific information that we need for the page, It's the parts of the page
+      itself that are transferred over.
+    </p>
+    <br />
+    <p>
+      In most modern frontend frameworks, you set up your components as primary pieces of code,
+      which exist as compiled files on the Client side. For example, in React, you might have a
+      component called `Button.js`. This component was most likely compiled before the client ever
+      touched the frontend. This both limits and speeds up the development process.
+    </p>
+    <br />
+    <p>
+      However, with HTMX, you're primary role is to send these components from the backend, where
+      code is much more easily hidden. You can of course get similar effects from single page
+      applications, but the way these frameworks are set up limits you from this front-end approach.
+    </p>
+    <br />
+    <p>
+      This is not a new idea, but it's interesting nonetheless, especially when you consider all the
+      new back-end capabilities that have become avaliable in the last few years. So, this old type
+      approach deserves to be explored.
+    </p>
+    <br />
+    <p>
+      The following button will send a request to the backend to get a component, and then display
+      it in the frontend. Sometimes, an input field will show up as well, and what you write in that
+      input field will be the component that an AI will attempt to create. To make sure that it is
+      not abused, I'm trying to randomly limit the daily requests to ??????.
+    </p>
+    <br />
+    <button
+      class="btn btn-primary"
+      hx-get="/htmx/exchange-button"
+      hx-target="#exchange-button-content"
+    >
+      Generate!
+    </button>
+    <div id="exchange-button-content">
+      <p>Content will be displayed here</p>
+    </div>
 
-        How about a recursive call?
-        <br>
-        <button class="btn btn-primary" hx-get="/api/recursive-window/8" hx-target="#recursive-content">Generate!</button>
-        <div id="recursive-content">
-            <p>The recursion will be displayed here</p>
-        </div>
+    How about a recursive call?
+    <br />
+    <button class="btn btn-primary" hx-get="/api/recursive-window/8" hx-target="#recursive-content">
+      Generate!
+    </button>
+    <div id="recursive-content">
+      <p>The recursion will be displayed here</p>
+    </div>
 
-        <!-- Style box, a div containing many elements, write down the style you want in the input box, and press the button.
+    <!-- Style box, a div containing many elements, write down the style you want in the input box, and press the button.
         <br>
         <button class="btn btn-primary" hx-get="/htmx/style-box" hx-target="#style-box-content">Generate!</button>
         <div id="style-box-content">
             <p>Content will be displayed here</p>
         </div> -->
 
-        <!-- Perhaps you can even create a timer, with HTML elements.
+    <!-- Perhaps you can even create a timer, with HTML elements.
         <br>
         <button class="btn btn-primary" hx-get="/htmx/timer" hx-target="#timer-content">Get Timer</button>
         <div id="timer-content">
             <p>A timer will be displayed here</p>
         </div> -->
 
-        <p>These are just a few fun examples, but they aren't _that_ practical.</p>
-        <br>
-        <p>So maybe we'll go a bit further...
-        What you can do on a single element, let's do on the whole website. Try to break it! And delete your cache afterwards please!
-        Style box, a div containing many elements, write down the style you want in the input box, and press the button.</p>
-        <br>
-        <script src="../../js/styling.js"></script>
-        <form hx-post="/api/generate-css" hx-target="#css-container" hx-swap="innerHTML" hx-indicator="#loading" hx-trigger="submit" onsubmit="addHTMLContent(this)">
-            <input type="text" name="prompt" placeholder="Enter your CSS style description..." class="form-control mb-2" required>
-            <input type="hidden" name="htmlContent" id="htmlContent">
-            <button type="submit" class="btn btn-primary">
-                Generate CSS Styles!
-            </button>
-        </form>
+    <p>These are just a few fun examples, but they aren't _that_ practical.</p>
+    <br />
+    <p>
+      So maybe we'll go a bit further... What you can do on a single element, let's do on the whole
+      website. Try to break it! And delete your cache afterwards please! Style box, a div containing
+      many elements, write down the style you want in the input box, and press the button.
+    </p>
+    <br />
+    <script src="../../js/styling.js"></script>
+    <form
+      hx-post="/api/generate-css"
+      hx-target="#css-container"
+      hx-swap="innerHTML"
+      hx-indicator="#loading"
+      hx-trigger="submit"
+      onsubmit="addHTMLContent(this)"
+    >
+      <input
+        type="text"
+        name="prompt"
+        placeholder="Enter your CSS style description..."
+        class="form-control mb-2"
+        required
+      />
+      <input type="hidden" name="htmlContent" id="html-content" />
+      <button type="submit" class="btn btn-primary">Generate CSS Styles!</button>
+    </form>
 
-        <!-- The loading indicator (hidden by default) -->
-        <div id="loading" class="htmx-indicator">
-            <p>Loading(this could take a few minutes)...</p>
-            <!-- or a spinner, progress bar, etc. -->
-        </div>
-	</div>
+    <!-- The loading indicator (hidden by default) -->
+    <div id="loading" class="htmx-indicator">
+      <p>Loading(this could take a few minutes)...</p>
+      <!-- or a spinner, progress bar, etc. -->
+    </div>
+  </div>
 </div>

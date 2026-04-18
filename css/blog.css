@@ -31,7 +31,12 @@ h1 {
   border: none;
 
   color: var(--main-contrast-color);
-  background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--accent-color),
+    transparent
+  );
 }
 
 .blog-posts-list {
@@ -145,11 +150,11 @@ h1 {
     padding: 1rem;
     margin-bottom: 1rem;
   }
-  
+
   .blog-post-item h2 {
     font-size: 1.3rem;
   }
-  
+
   .blog-post-content {
     padding: 0 1rem;
   }
@@ -206,13 +211,13 @@ h1 {
     gap: 1rem;
     margin-bottom: 1.5rem;
   }
-  
+
   .post-dot {
     min-width: 10px;
     height: 10px;
     margin-top: 0.5rem;
   }
-  
+
   h2 {
     font-size: 1.4rem;
   }

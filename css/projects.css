@@ -30,7 +30,6 @@
   }
 }
 
-
 .project-card {
   /* background-color: var(--input-bg-color); */
   background-color: var(--background-contrast-color);
@@ -93,7 +92,7 @@
 }
 
 .project-image {
-  width: 100%; 
+  width: 100%;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 1rem;
@@ -104,14 +103,13 @@
   .projects-container {
     padding: 1rem;
   }
-  
+
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .project-card {
     padding: 1rem;
   }
 }
-
