@@ -1,0 +1,34 @@
+{{/* go:template */}}
+<div id="{{.DivID}}" 
+     hx-get="/api/recursive-window/{{.NextRemainder}}" 
+     hx-trigger="load" 
+     style="border: {{.BorderWidth}} solid hsl({{.Hue}}, {{.HslSaturation}}, {{.HslLightness}}); 
+            position: relative; 
+            width: {{.DivWidth}}; 
+            height: {{.DivHeight}}; 
+            min-height: {{.MinHeight}}; 
+            margin-left: {{.MarginLeft}}; 
+            margin-top: {{.MarginTop}}; 
+            margin-right: {{.MarginRight}}; 
+            margin-bottom: {{.MarginBottom}}; 
+            padding: {{.Padding}};
+            box-sizing: border-box;
+            background-color: hsla({{.Hue}}, {{.HslSaturation}}, {{.HslLightness}}, 0.1);">
+</div>
+
+<style>
+#{{.DivID}} {
+    animation: fadeIn-{{.DivID}} {{.AnimationDuration}} {{.AnimationEasing}} forwards;
+}
+
+@keyframes fadeIn-{{.DivID}} {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+</style>

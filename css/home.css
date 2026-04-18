@@ -1,0 +1,141 @@
+/* Home page styles - Clean & Structured */
+
+.home-page-content {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  width: 100%;
+}
+
+.home-text-section {
+  flex: 1.2;
+  min-width: 320px;
+}
+
+.home-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  /* Ensures absolute alignment to the left edge */
+  align-items: flex-start; 
+}
+
+.home-title {
+  font-size: 4.8rem;
+  font-weight: 900;
+  margin: 0;
+  color: var(--title-color);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  padding-left: 0; /* Strict alignment */
+}
+
+.home-subtitle-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Accent bar adds structure to the "too minimalist" look */
+.home-accent-bar {
+  width: 4px;
+  height: 1.5rem;
+  background-color: var(--main-contrast-color);
+  border-radius: 2px;
+}
+
+.home-subtitle {
+  font-size: 1.6rem;
+  color: var(--main-contrast-color);
+  margin: 0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.home-image-section {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+}
+
+.home-profile-image {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: transparent;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.home-profile-image:hover {
+  transform: scale(1.05) rotate(1deg);
+}
+
+/* Minimalist Entrance Animations */
+.fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.fade-in-up-delayed {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .home-flex-container {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 3rem;
+  }
+  
+  .home-text-wrapper {
+    align-items: center; /* Center on mobile */
+  }
+
+  .home-subtitle-container {
+    justify-content: center;
+  }
+
+  .home-accent-bar {
+    display: none; /* Cleaner on mobile */
+  }
+
+  .home-page-content {
+    min-height: 60vh;
+  }
+  
+  .home-title {
+    font-size: 3.2rem;
+  }
+  
+  .home-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .home-profile-image {
+    max-width: 260px;
+  }
+}

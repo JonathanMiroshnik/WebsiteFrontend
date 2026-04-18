@@ -1,0 +1,274 @@
+:root {
+  /* CONSTANTS */
+  --title-color: black;
+  --description-color: gray;
+  --undertext-color: black;
+  --border-separator-color: gray;
+  --border-big-separator-color: black;
+  
+  /* Main background color */
+  --global-background-color: white;
+
+  /* Background color for contact and navbar */
+  --global-secondary-background-color: rgb(175, 175, 175);
+
+  /* Used for text, buttons, borders */
+  --main-contrast-color: #008B8B;
+  --main-slight-contrast-color: #004242;
+
+  /* TODO: figure out how to do mobile cutoff global, see: https://bholmes.dev/blog/alternative-to-css-variable-media-queries/ */
+  /* --mobile-size-cutoff: 600px; */
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;  
+}
+
+/* Reset some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+}
+  
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Bootstrap import removed - using CDN instead */
+
+main {
+  flex: 1;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+}
+
+/* General styles for the night mode theme */
+body {
+  display: flex;
+  flex-direction: column;
+  
+  min-height: 100%;
+  height: 100%;
+  margin: 0;
+
+  background-color: var(--global-background-color);
+  color: var(--title-color);
+  font-family: 'Arial', sans-serif;
+
+  line-height: 1.6;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+  color: var(--title-color);
+}
+
+a {
+  color: #bb86fc;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #03dac6;
+  text-decoration: underline;
+}
+
+/* Text box styles */
+input[type="text"], input[type="email"], textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  background-color: var(--input-bg-color);
+  color: var(--title-color);
+  font-size: 1em;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+  border-color: #03dac6;
+  outline: none;
+}
+
+/* ---------------------------------------------- Button styles ---------------------------------------------- */
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: var(--title-color);
+  background-color: #03dac6;
+  border: 1px solid var(--main-slight-contrast-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #028d79;
+  transform: scale(1.05);
+}
+
+button:active {
+  background-color: #026b5f;
+}
+
+button:disabled {
+  background-color: #555555;
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------- Textarea specific styles ---------------------------------------------- */
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ---------------------------------------------- Video content ---------------------------------------------- */
+
+/* Layout styles */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.layout-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: var(--global-background-color);
+  border-bottom: 1px solid var(--input-border-color);
+}
+
+.layout-main {
+  flex: 1;
+  margin-top: 60px; /* Navbar height */
+}
+
+.layout-footer {
+  margin-top: auto;
+  background-color: var(--global-background-color);
+  border-top: 1px solid var(--input-border-color);
+}
+
+/* ---------------------------------------------- Content container styles ---------------------------------------------- */
+/* Content container styles */
+.contentContainer {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------- Video content ---------------------------------------------- */
+/* TODO: Horizontal video content */
+/* TODO: Vertical video content */
+.youtube-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--title-color);
+}
+
+.clean-youtube {
+  border: none;
+  display: block;
+  margin: 0 auto;
+  background: var(--title-color);
+}
+
+/* Video content styles */
+.youtube-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--title-color);
+}
+
+.clean-youtube {
+  border: none;
+  display: block;
+  margin: 0 auto;
+  background: var(--title-color);
+}
+
+/* ---------------------------------------------- Dynamic content ---------------------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    background-color: black;
+
+    --title-color: white;
+    --description-color: gray;
+    --undertext-color: white;
+    --border-separator-color: gray;
+    --border-big-separator-color: white;
+
+    --global-background-color: black;
+    --global-secondary-background-color: rgb(39, 39, 39);
+
+    --main-contrast-color: #03dac6;
+    --main-slight-contrast-color: #009c8d;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: var(--global-background-color);
+    color: white;  
+  }
+}
+  
+@media (prefers-color-scheme: light) {
+  :root {
+    background-color: #ffffff;
+
+    --title-color: black;
+    --description-color: gray;
+    --undertext-color: black;
+    --border-separator-color: gray;
+    --border-big-separator-color: black;
+
+    --global-background-color: white;
+    --global-secondary-background-color: rgb(216, 216, 216);
+
+    --main-contrast-color: #008B8B;
+    --main-slight-contrast-color: #004242;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: var(--global-background-color);
+    color: color;
+  }
+}
+
+/* Mobile-first media queries */
+@media (min-width: 768px) {
+  .layout-main {
+    margin-top: 80px;
+  }
+}

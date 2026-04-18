@@ -1,0 +1,9 @@
+{{/* go:template */}}
+<div>
+    <div id="timer-block-1" hx-get="/api/htmx/timer-block" hx-target="timer-block-2" hx-trigger="every 1s">
+    </div>
+    <div id="timer-block-2" hx-get="/api/htmx/timer-block" hx-target="timer-block-3" hx-trigger="every 1s">
+    </div>
+    <div id="timer-block-3" hx-get="/api/htmx/timer-block" hx-target="timer-block-1" hx-trigger="every 1s">
+    </div>
+</div>

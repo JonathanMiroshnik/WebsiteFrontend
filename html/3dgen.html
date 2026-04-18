@@ -1,0 +1,34 @@
+<!-- 3D Triangle Generation Example -->
+<div style="margin: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+    <h3 style="color: #333; margin-bottom: 15px;">3D Triangle Generation Example</h3>
+    <div id="triangle-example" hx-get="/api/3dgen/triangle?x1=50&y1=50&x2=150&y2=50&x3=100&y3=120" hx-trigger="load">
+        <!-- Triangle will be loaded here -->
+    </div>
+    <div style="margin-top: 15px;">
+        <button class="btn btn-primary" hx-get="/api/3dgen/scene?type=pyramid" hx-target="#triangle-example">
+            Load Pyramid Scene
+        </button>
+        <button class="btn btn-success" hx-get="/api/3dgen/scene?type=cube" hx-target="#triangle-example" style="margin-left: 10px;">
+            Load Cube Scene
+        </button>
+        <button class="btn btn-info" hx-get="/api/3dgen/scene?type=random" hx-target="#triangle-example" style="margin-left: 10px;">
+            Load Random Triangles
+        </button>
+    </div>
+    
+    <!-- Image Examples -->
+    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+        <h4 style="color: #555; margin-bottom: 10px;">Image Examples</h4>
+        <div id="image-triangle-example" hx-get="/api/3dgen/triangle?x1=50&y1=50&x2=150&y2=50&x3=100&y3=120&image=https://picsum.photos/200/200" hx-trigger="load">
+            <!-- Image triangle will be loaded here -->
+        </div>
+        <div style="margin-top: 15px;">
+            <button class="btn btn-warning" hx-get="/api/3dgen/scene?type=pyramid&image=https://picsum.photos/400/300" hx-target="#image-triangle-example">
+                Load Pyramid with Image
+            </button>
+            <button class="btn btn-secondary" hx-get="/api/3dgen/scene?type=cube&image=https://picsum.photos/400/300" hx-target="#image-triangle-example" style="margin-left: 10px;">
+                Load Cube with Image
+            </button>
+        </div>
+    </div>
+</div>

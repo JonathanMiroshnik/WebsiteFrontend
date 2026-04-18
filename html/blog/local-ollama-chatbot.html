@@ -1,0 +1,487 @@
+<div class="contentContainer">
+  <div class="blog-post-content">
+    <h1>Chatting with your Local Ollama</h1>
+
+    <div
+      style="
+        background-color: var(--input-bg-color);
+        border-left: 4px solid var(--main-contrast-color);
+        padding: 1rem;
+        margin-bottom: 2rem;
+        border-radius: 4px;
+      "
+    >
+      <h3 style="margin-top: 0; color: var(--main-contrast-color)">
+        How to use this
+      </h3>
+      <p>
+        If you're running
+        <a href="https://ollama.com/" target="_blank">Ollama</a> locally, you
+        have a powerful LLM API running right on your machine. Because your
+        browser is also running locally, this webpage can talk directly to your
+        Ollama instance without sending any of your data to my server!
+      </p>
+
+      <p><strong>Step 1: Install and Start Ollama</strong></p>
+      <p>
+        Make sure you have Ollama installed and running. By default, web
+        browsers block web pages from making requests to local servers for
+        security reasons (CORS). To allow this webpage to talk to your local
+        Ollama, you must start Ollama with the
+        <code>OLLAMA_ORIGINS</code> environment variable set to allow all
+        origins.
+      </p>
+
+      <p>
+        <em
+          >Note: Your local host is usually
+          <code>http://localhost:11434</code> or
+          <code>http://127.0.0.1:11434</code> depending on your system
+          setup.</em
+        >
+      </p>
+
+      <p>
+        <strong>Windows (Command Prompt):</strong><br />
+        <code>set OLLAMA_ORIGINS="*" && ollama serve</code>
+      </p>
+
+      <p>
+        <strong>Mac/Linux (Terminal):</strong><br />
+        <code>OLLAMA_ORIGINS="*" ollama serve</code>
+      </p>
+
+      <p><strong>Step 2: Connect</strong></p>
+      <p>
+        Once Ollama is running with CORS enabled, you can use the "Fetch
+        Available Models" button below to load your installed models, or
+        manually type the model name (e.g., <code>llama3</code>) and start
+        chatting!
+      </p>
+    </div>
+
+    <div
+      style="
+        margin-top: 2rem;
+        border: 1px solid var(--input-border-color);
+        border-radius: 8px;
+        padding: 1rem;
+        background-color: var(--global-secondary-background-color);
+      "
+    >
+      <h3>
+        Local Chatbot
+        <span
+          id="ollama-connection-status"
+          style="
+            font-size: 0.8em;
+            margin-left: 10px;
+            font-weight: normal;
+            vertical-align: middle;
+          "
+        ></span>
+      </h3>
+
+      <div
+        style="
+          display: flex;
+          gap: 15px;
+          flex-wrap: wrap;
+          margin-bottom: 15px;
+          align-items: flex-end;
+        "
+      >
+        <div>
+          <label
+            for="ollama-host"
+            style="font-weight: bold; display: block; margin-bottom: 5px"
+            >Host & Port:</label
+          >
+          <div style="display: flex; gap: 10px; align-items: center">
+            <input
+              type="text"
+              id="ollama-host"
+              value="http://localhost:11434"
+              style="
+                width: 200px;
+                margin: 0;
+                padding: 8px;
+                box-sizing: border-box;
+              "
+            />
+            <button
+              id="check-connection-btn"
+              onclick="checkOllamaConnection()"
+              class="btn btn-secondary"
+              style="margin: 0; padding: 8px; font-size: 0.9em"
+            >
+              Check Connection
+            </button>
+          </div>
+        </div>
+        <div style="flex-grow: 1">
+          <label
+            for="ollama-model"
+            style="font-weight: bold; display: block; margin-bottom: 5px"
+            >Model:</label
+          >
+          <div style="display: flex; gap: 10px">
+            <select
+              id="ollama-model-select"
+              style="
+                padding: 8px;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+                background-color: var(--global-background-color);
+                color: var(--title-color);
+                display: none;
+                width: 200px;
+                box-sizing: border-box;
+              "
+              onchange="
+                document.getElementById('ollama-model').value = this.value
+              "
+            >
+              <option value="">Select a model...</option>
+            </select>
+            <input
+              type="text"
+              id="ollama-model"
+              value="llama3"
+              style="
+                width: 150px;
+                margin: 0;
+                padding: 8px;
+                box-sizing: border-box;
+              "
+              placeholder="e.g. llama3"
+            />
+            <button
+              id="fetch-models-btn"
+              onclick="fetchOllamaModels()"
+              class="btn btn-secondary"
+              style="margin: 0; box-sizing: border-box"
+            >
+              Fetch Available Models
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="ollama-chat-history"
+        style="
+          height: 350px;
+          overflow-y: auto;
+          background-color: var(--input-bg-color);
+          border: 1px solid var(--border-separator-color);
+          border-radius: 4px;
+          padding: 15px;
+          margin-bottom: 15px;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          box-sizing: border-box;
+        "
+      >
+        <p
+          id="ollama-placeholder"
+          style="
+            color: var(--description-color);
+            font-style: italic;
+            margin: 0;
+            text-align: center;
+          "
+        >
+          Chat history will appear here...
+        </p>
+      </div>
+      <div style="display: flex; gap: 10px; flex-direction: column">
+        <textarea
+          id="ollama-prompt"
+          placeholder="Type your message here..."
+          rows="3"
+          style="
+            min-height: 60px;
+            margin: 0;
+            padding: 10px;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+          "
+        ></textarea>
+        <div style="display: flex; gap: 10px">
+          <button
+            id="ollama-send-btn"
+            onclick="sendToOllama()"
+            class="btn btn-primary"
+            style="align-self: flex-start"
+          >
+            Send to Local Ollama
+          </button>
+          <button
+            id="ollama-clear-btn"
+            onclick="clearOllamaChat()"
+            class="btn btn-secondary"
+            style="align-self: flex-start"
+          >
+            Clear Conversation
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.chatMessages = window.chatMessages || [];
+
+      function clearOllamaChat() {
+        window.chatMessages = [];
+        const chatHistory = document.getElementById("ollama-chat-history");
+        chatHistory.innerHTML =
+          '<p id="ollama-placeholder" style="color: var(--description-color); font-style: italic; margin: 0; text-align: center;">Chat history will appear here...</p>';
+      }
+
+      // Connection checking logic
+      window.connectionCheckTimeout = window.connectionCheckTimeout || null;
+
+      async function checkOllamaConnection() {
+        const statusSpan = document.getElementById("ollama-connection-status");
+        const checkBtn = document.getElementById("check-connection-btn");
+
+        statusSpan.innerHTML =
+          '<span style="color: #666;">⏳ Checking...</span>';
+        if (checkBtn) checkBtn.disabled = true;
+
+        try {
+          const baseUrl = getBaseUrl();
+          // Timeout fetch after 3 seconds
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 3000);
+
+          const response = await fetch(`${baseUrl}/api/tags`, {
+            signal: controller.signal,
+          });
+
+          clearTimeout(timeoutId);
+
+          if (response.ok) {
+            statusSpan.innerHTML =
+              '<span style="color: green; font-weight: bold;">✓ Connected</span>';
+          } else {
+            statusSpan.innerHTML =
+              '<span style="color: red; font-weight: bold;">✗ Error</span>';
+          }
+        } catch (error) {
+          statusSpan.innerHTML =
+            '<span style="color: red; font-weight: bold;">✗ Disconnected</span>';
+        } finally {
+          if (checkBtn) checkBtn.disabled = false;
+        }
+      }
+
+      function scheduleConnectionCheck() {
+        clearTimeout(window.connectionCheckTimeout);
+        window.connectionCheckTimeout = setTimeout(checkOllamaConnection, 500);
+      }
+
+      // Initialize listeners
+      document.addEventListener("DOMContentLoaded", () => {
+        const hostInput = document.getElementById("ollama-host");
+        if (hostInput) {
+          hostInput.addEventListener("input", scheduleConnectionCheck);
+        }
+
+        // Initial check
+        setTimeout(checkOllamaConnection, 500);
+      });
+
+      function getBaseUrl() {
+        let url = document.getElementById("ollama-host").value.trim();
+        if (url.endsWith("/")) {
+          url = url.slice(0, -1);
+        }
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+          url = "http://" + url;
+        }
+        return url;
+      }
+
+      async function fetchOllamaModels() {
+        const fetchBtn = document.getElementById("fetch-models-btn");
+        const modelSelect = document.getElementById("ollama-model-select");
+        const modelInput = document.getElementById("ollama-model");
+
+        fetchBtn.disabled = true;
+        fetchBtn.textContent = "Fetching...";
+        checkOllamaConnection();
+
+        try {
+          const baseUrl = getBaseUrl();
+          const response = await fetch(`${baseUrl}/api/tags`);
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          const models = data.models;
+
+          if (models && models.length > 0) {
+            // Clear existing options except the first one
+            modelSelect.innerHTML =
+              '<option value="">Select a model...</option>';
+
+            models.forEach((model) => {
+              const option = document.createElement("option");
+              option.value = model.name;
+              option.textContent = model.name;
+              modelSelect.appendChild(option);
+            });
+
+            modelSelect.style.display = "inline-block";
+            modelInput.style.display = "none"; // Hide text input when select is available
+
+            // Auto-select the first model if the input matches it, or if input is empty
+            if (models.length > 0) {
+              modelSelect.value = models[0].name;
+              modelInput.value = models[0].name;
+            }
+
+            fetchBtn.textContent = "Models Loaded ✓";
+            setTimeout(() => {
+              fetchBtn.textContent = "Refresh Models";
+            }, 3000);
+          } else {
+            alert(
+              'Connected to Ollama, but no models found. Try pulling one with "ollama pull llama3"',
+            );
+            fetchBtn.textContent = "Fetch Available Models";
+          }
+        } catch (error) {
+          console.error("Error fetching models:", error);
+          alert(
+            'Could not connect to Ollama to fetch models.\n\nMake sure it is running and OLLAMA_ORIGINS="*" is set.',
+          );
+          fetchBtn.textContent = "Fetch Available Models";
+          modelSelect.style.display = "none";
+          modelInput.style.display = "inline-block";
+        } finally {
+          fetchBtn.disabled = false;
+        }
+      }
+
+      async function sendToOllama() {
+        const promptInput = document.getElementById("ollama-prompt");
+        const modelInput = document.getElementById("ollama-model");
+        const chatHistory = document.getElementById("ollama-chat-history");
+        const sendBtn = document.getElementById("ollama-send-btn");
+        const placeholder = document.getElementById("ollama-placeholder");
+
+        const prompt = promptInput.value.trim();
+        checkOllamaConnection();
+        const model = modelInput.value.trim() || "llama3";
+
+        if (!prompt) return;
+
+        window.chatMessages.push({ role: "user", content: prompt });
+
+        // Remove placeholder if present
+        if (placeholder) {
+          placeholder.remove();
+        }
+
+        // Add user message to chat
+        const userMsgContainer = document.createElement("div");
+        userMsgContainer.style.textAlign = "right";
+        const userMsg = document.createElement("span");
+        userMsg.style.backgroundColor = "var(--main-contrast-color)";
+        userMsg.style.color = "var(--global-background-color)";
+        userMsg.style.padding = "10px 15px";
+        userMsg.style.borderRadius = "15px";
+        userMsg.style.borderBottomRightRadius = "4px";
+        userMsg.style.display = "inline-block";
+        userMsg.style.textAlign = "left";
+        userMsg.style.maxWidth = "85%";
+        userMsg.textContent = prompt;
+        userMsgContainer.appendChild(userMsg);
+        chatHistory.appendChild(userMsgContainer);
+
+        // Add loading indicator
+        const botMsgContainer = document.createElement("div");
+        botMsgContainer.style.textAlign = "left";
+        const botMsg = document.createElement("div");
+        botMsg.style.backgroundColor = "var(--border-separator-color)";
+        botMsg.style.color = "var(--global-background-color)";
+        botMsg.style.padding = "10px 15px";
+        botMsg.style.borderRadius = "15px";
+        botMsg.style.borderBottomLeftRadius = "4px";
+        botMsg.style.display = "inline-block";
+        botMsg.style.maxWidth = "85%";
+        botMsg.style.overflowWrap = "break-word";
+        botMsg.style.wordBreak = "break-word";
+        botMsg.textContent = "Thinking...";
+        botMsgContainer.appendChild(botMsg);
+        chatHistory.appendChild(botMsgContainer);
+
+        // Scroll to bottom
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+
+        promptInput.value = "";
+        sendBtn.disabled = true;
+
+        try {
+          const baseUrl = getBaseUrl();
+          const response = await fetch(`${baseUrl}/api/chat`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              model: model,
+              messages: window.chatMessages,
+              stream: false,
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error(
+              "Network response was not ok: " + response.statusText,
+            );
+          }
+
+          const data = await response.json();
+          const botResponse = data.message.content;
+          window.chatMessages.push({ role: "assistant", content: botResponse });
+
+          botMsg.style.backgroundColor = "var(--global-background-color)";
+          botMsg.style.border = "1px solid var(--main-contrast-color)";
+          botMsg.style.color = "var(--title-color)";
+          botMsg.innerHTML = botResponse.replace(/\n/g, "<br>");
+        } catch (error) {
+          // Remove the user's message from the history if the request failed
+          window.chatMessages.pop();
+
+          console.error("Error connecting to Ollama:", error);
+          botMsg.style.backgroundColor = "#ffcccc";
+          botMsg.style.color = "#cc0000";
+          botMsg.style.border = "1px solid #cc0000";
+          botMsg.innerHTML =
+            '<strong>Error:</strong> Could not connect to local Ollama.<br><br>Make sure Ollama is running at the specified Host/Port and CORS is enabled (run with <code>OLLAMA_ORIGINS="*" ollama serve</code>).';
+        } finally {
+          sendBtn.disabled = false;
+          chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+      }
+
+      // Add enter key support
+      document
+        .getElementById("ollama-prompt")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            sendToOllama();
+          }
+        });
+    </script>
+  </div>
+</div>

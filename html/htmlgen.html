@@ -1,0 +1,19 @@
+<!-- HTML Generation Demo -->
+<div id="htmlgen-content-inner" class="mt-4 p-3 border rounded">
+    <h4>HTML Generation Demo</h4>
+    <p>Click the button below to generate HTML content from the Go backend:</p>
+    <form hx-post="/api/generate-html" hx-target="#generated-html-content" hx-trigger="submit">
+        <input type="text" name="prompt" placeholder="Enter your HTML generation prompt..." class="form-control mb-2" required>
+        <button type="submit" class="btn btn-primary">
+            Generate HTML Content
+        </button>
+    </form>
+    <div class="mt-3">
+        <small class="text-muted">This will call the Go backend route that uses two functions to generate HTML.</small>
+    </div>
+    
+    <!-- Container for generated HTML content -->
+    <div id="generated-html-content" class="mt-4">
+        <!-- Generated content will appear here -->
+    </div>
+</div>

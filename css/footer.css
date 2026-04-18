@@ -1,0 +1,149 @@
+/* TODO: fix footer being overlaid everything above and hiding text many a times*/
+.contact-bar {
+    display: flex;
+    align-items: center;
+
+    /* Ensures left and right parts are split */
+    /* justify-content: space-between; */
+
+    background-color: var(--global-secondary-background-color);
+    color: var(--title-color);
+
+    /* Adds padding for better spacing */
+    padding: 0.2% 7%;
+
+    /* Clear dividing line at the top */
+    border-top: 2px solid #03dac6;
+    box-shadow: 0 -2px 5px var(--title-color);
+
+    bottom: 0;
+    left: 0;
+    /* width: 100%; */
+
+    /* Initially invisible */
+    opacity: 1;
+    /* Smooth transition for opacity change */
+    transition: opacity 0.3s ease;
+}
+
+.contact-left {
+    /* Takes up one part of the available space */
+    flex: 1;
+    width: 50%;
+}
+
+.contact-left p {
+    display: flex;
+    gap: 0.8rem;
+
+    margin: 0.5rem 0;
+    font-size: 1em;
+}
+
+.contact-left a {
+    color: var(--main-contrast-color);
+    text-decoration: none;
+}
+
+.contact-left a:hover {
+    color: var(--main-slight-contrast-color);
+    text-decoration: underline;
+}
+
+.contact-right {
+    width: 50%;
+    /* Takes up one part of the available space */      
+    /* display: flex; */
+    /* flex: 1; */
+
+    /* Ensures textarea and button are side by side */
+    /* flex-direction: row; */
+
+    /* align-items: center; */
+    /* align-items: flex-end; */
+    /* justify-content: flex-end; */
+    /* Aligns content to the right */
+    /* justify-content: flex-end; */
+
+    /* Adds spacing between the elements */
+    /* gap: 30px; */
+
+    /* justify-content: center; */
+
+    /* height: 100%; */
+}
+
+.contact-right textarea {
+    width: 30%;
+    /* height: 90px; */
+    padding: 10px;
+    border: 1px solid var(--title-color);
+    border-radius: 5px;
+    background-color: var(--title-color);
+    color: #e0e0e0;
+    resize: none;
+    font-size: 1em;
+    box-shadow: inset 0 2px 4px var(--title-color);
+}
+
+.contact-right textarea:focus {
+    outline: none;
+    border-color: #03dac6;
+}
+
+.contact-right button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: var(--global-background-color);
+    background-color: #03dac6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.contact-right button:hover {
+    background-color: #028d79;
+    transform: scale(1.05);
+}
+
+.contact-right button:active {
+    background-color: #026b5f;
+}
+
+.contact-right textarea {
+    width: 100%;
+    min-height: 150px;
+}
+
+/* sm */
+@media (max-width: 640px) {
+    .contact-bar {
+        /* Matches navbar padding for small screens */
+        padding: 0.2% 0;
+    }
+    .contact-right {
+        /* Instead of visibility: collapse */
+        display: none;
+    }
+    .contact-left {
+        /* flex: 0 1 100%; Take full available width */
+        /* Center content horizontally */
+        text-align: center;
+        /* justify-content: center; Center vertically if using flex */
+    }
+}
+
+@media (min-width: 768px) {
+    .contact-bar {
+        /* Matches navbar padding for consistent horizontal alignment */
+        padding: 0.2% 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .contact-bar {
+        /* grid-template-columns: 1fr 1fr; */
+        /* align-items: start; */
+    }
+}
