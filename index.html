@@ -48,7 +48,7 @@
 
     <!-- Main Content Area -->
     <main class="layout-main">   
-        <div id="content" hx-get="/html/home.html" hx-trigger="load">
+        <div id="content" hx-get="/html/home.html" hx-trigger="load" hx-swap="innerHTML">
             <!-- Content will be loaded here -->
         </div>
 
@@ -69,7 +69,7 @@
     </main>
 
     <!-- Footer/Contact Bar -->
-    <div class="layout-footer" hx-get="/html/footer.html" hx-trigger="load">
+    <div class="layout-footer" hx-get="/html/footer.html" hx-trigger="load" hx-swap="innerHTML">
         <!-- Footer content will be loaded here -->
     </div>
 </body>
