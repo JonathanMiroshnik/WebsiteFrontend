@@ -40,15 +40,15 @@
         <nav class="website-navbar">
             <span class="iconify" data-icon="solar:armchair-outline" data-width="24" data-height="24"></span>
 
-            <a hx-get="html/home.html" hx-target="#content" hx-push-url="/home"><button class="navbar">Home</button></a>
-            <a hx-get="html/blog.html" hx-target="#content" hx-push-url="/blog"><button class="navbar">Blog</button></a>
-            <a hx-get="html/projects.html" hx-target="#content" hx-push-url="/projects"><button class="navbar">Projects</button></a>
+            <a hx-get="/html/home.html" hx-target="#content" hx-push-url="/home"><button class="navbar">Home</button></a>
+            <a hx-get="/html/blog.html" hx-target="#content" hx-push-url="/blog"><button class="navbar">Blog</button></a>
+            <a hx-get="/html/projects.html" hx-target="#content" hx-push-url="/projects"><button class="navbar">Projects</button></a>
         </nav>
     </div>
 
     <!-- Main Content Area -->
     <main class="layout-main">   
-        <div id="content" hx-get="html/home.html" hx-trigger="load">
+        <div id="content" hx-get="/html/home.html" hx-trigger="load">
             <!-- Content will be loaded here -->
         </div>
 
@@ -69,7 +69,7 @@
     </main>
 
     <!-- Footer/Contact Bar -->
-    <div class="layout-footer" hx-get="html/footer.html" hx-trigger="load">
+    <div class="layout-footer" hx-get="/html/footer.html" hx-trigger="load">
         <!-- Footer content will be loaded here -->
     </div>
 </body>
