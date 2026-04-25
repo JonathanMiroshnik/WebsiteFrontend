@@ -14,20 +14,16 @@
     <!-- HTMX for dynamic content loading -->
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"></script>
 
+    <!-- Allow cross-origin requests for backend API calls -->
+    <script>
+      htmx.config.allowCrossOriginRequests = true;
+    </script>
+
     <!-- Iconify for icons -->
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
 
     <!-- Custom JavaScript for navigation -->
     <!-- <script src="./js/navigation.js"></script> -->
-
-    <!-- Redirect /api/ requests to the backend -->
-    <script>
-      document.addEventListener('htmx:configRequest', function(evt) {
-        if (evt.detail.path.startsWith('/api/')) {
-          evt.detail.path = 'https://api.sensorcensor.xyz' + evt.detail.path;
-        }
-      });
-    </script>
 
     <!-- CSS -->
     <div id="css-container">

@@ -12,7 +12,7 @@
       <p>Check if the backend server is running.</p>
       <button
         class="btn btn-primary"
-        hx-get="/api/health"
+        hx-get="https://api.sensorcensor.xyz/health"
         hx-target="#health-result"
         hx-swap="innerHTML"
       >
@@ -28,7 +28,7 @@
       <p>Generate a recursive window visualization from the backend.</p>
       <button
         class="btn btn-primary"
-        hx-get="/api/recursive-window/6"
+        hx-get="https://api.sensorcensor.xyz/api/recursive-window/6"
         hx-target="#recursive-result"
         hx-swap="innerHTML"
       >
