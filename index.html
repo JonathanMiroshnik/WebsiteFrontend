@@ -20,6 +20,15 @@
     <!-- Custom JavaScript for navigation -->
     <!-- <script src="./js/navigation.js"></script> -->
 
+    <!-- Redirect /api/ requests to the backend -->
+    <script>
+      document.addEventListener('htmx:configRequest', function(evt) {
+        if (evt.detail.path.startsWith('/api/')) {
+          evt.detail.path = 'https://api.sensorcensor.xyz' + evt.detail.path;
+        }
+      });
+    </script>
+
     <!-- CSS -->
     <div id="css-container">
       <!-- Bootstrap JS -->
@@ -53,6 +62,9 @@
         >
         <a hx-get="/html/projects.html" hx-target="#content" hx-push-url="/projects"
           ><button class="navbar">Projects</button></a
+        >
+        <a hx-get="/html/playground.html" hx-target="#content" hx-push-url="/playground"
+          ><button class="navbar">Playground</button></a
         >
       </nav>
     </div>

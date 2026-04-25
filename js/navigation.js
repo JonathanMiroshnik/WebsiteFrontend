@@ -59,6 +59,11 @@ function updateActiveNavigation() {
       currentPath === '/projects'
     ) {
       button.classList.add('active');
+    } else if (
+      button.textContent.toLowerCase() === 'playground' &&
+      currentPath === '/playground'
+    ) {
+      button.classList.add('active');
     }
   });
 }

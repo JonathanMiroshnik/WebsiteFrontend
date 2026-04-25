@@ -1,0 +1,42 @@
+<!doctype html>
+<div class="content-container">
+  <div class="playground-content">
+    <h1>API Playground</h1>
+    <div class="hr-container">
+      <hr class="hr-container" />
+    </div>
+    <p>Test communication with the backend at <code>api.sensorcensor.xyz</code>.</p>
+
+    <div class="playground-section">
+      <h2>Health Check</h2>
+      <p>Check if the backend server is running.</p>
+      <button
+        class="btn btn-primary"
+        hx-get="/api/health"
+        hx-target="#health-result"
+        hx-swap="innerHTML"
+      >
+        Check Health
+      </button>
+      <div id="health-result" class="playground-result">
+        <p>Click the button to check backend health...</p>
+      </div>
+    </div>
+
+    <div class="playground-section">
+      <h2>Recursive Window</h2>
+      <p>Generate a recursive window visualization from the backend.</p>
+      <button
+        class="btn btn-primary"
+        hx-get="/api/recursive-window/6"
+        hx-target="#recursive-result"
+        hx-swap="innerHTML"
+      >
+        Generate Recursive Window
+      </button>
+      <div id="recursive-result" class="playground-result">
+        <p>Click the button to generate...</p>
+      </div>
+    </div>
+  </div>
+</div>
