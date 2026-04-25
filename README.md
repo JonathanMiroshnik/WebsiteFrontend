@@ -60,11 +60,29 @@ WebsiteFrontend/
 npm install
 ```
 
-2. Run the development server (if needed):
+2. Run the development server:
 
 ```bash
-# For local development, you can use any static server
+# Option A: Using Python (no dependencies needed)
+python3 -m http.server 8080
+
+# Option B: Using npx
 npx serve .
+```
+
+Then open http://localhost:8080 in your browser.
+
+### Restarting the Server
+
+```bash
+# Find the running server process
+ps aux | grep "http.server"
+
+# Kill it (replace PID with the actual process ID)
+kill <PID>
+
+# Start it again
+python3 -m http.server 8080
 ```
 
 ### Available Scripts

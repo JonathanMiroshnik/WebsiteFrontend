@@ -14,9 +14,9 @@
     <!-- HTMX for dynamic content loading -->
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"></script>
 
-    <!-- Allow cross-origin requests for backend API calls -->
+    <!-- Allow cross-origin requests to the backend API -->
     <script>
-      htmx.config.allowCrossOriginRequests = true;
+      htmx.config.selfRequestsOnly = false;
     </script>
 
     <!-- Iconify for icons -->
