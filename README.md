@@ -61,7 +61,6 @@ npm install
 ```
 
 2. Run the development server:
-2. Run the development server:
 
 ```bash
 # Start the local static server (SPA routing is handled by serve.json)
