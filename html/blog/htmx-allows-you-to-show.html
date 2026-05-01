@@ -49,7 +49,7 @@
 
     How about a recursive call?
     <br />
-    <button class="btn btn-primary" hx-get="/api/recursive-window/8" hx-target="#recursive-content">
+    <button class="btn btn-primary" hx-get="https://api.sensorcensor.xyz/api/recursive-window/8" hx-target="#recursive-content">
       Generate!
     </button>
     <div id="recursive-content">
@@ -80,7 +80,7 @@
     <br />
     <script src="../../js/styling.js"></script>
     <form
-      hx-post="/api/generate-css"
+      hx-post="https://api.sensorcensor.xyz/api/generate-css"
       hx-target="#css-container"
       hx-swap="innerHTML"
       hx-indicator="#loading"
