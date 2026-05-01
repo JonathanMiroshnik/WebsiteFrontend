@@ -60,16 +60,19 @@ WebsiteFrontend/
 npm install
 ```
 
-2. Run the development server (if needed):
+2. Run the development server:
 
 ```bash
-# For local development, you can use any static server
+# Start the local static server (SPA routing is handled by serve.json)
 npx serve .
 ```
 
 ### Available Scripts
 
 ```bash
+# Start the local development server (SPA routing via serve.json)
+npm start
+
 # Run all linting and formatting checks
 npm run lint
 
