@@ -1,74 +1,33 @@
 // Navigation JavaScript for HTMX frontend
 // This handles client-side routing and content loading
 
-// Navigation function that loads content via HTMX
-// eslint-disable-next-line no-unused-vars
-function navigateTo(path) {
-  // Update the URL without page reload
-  window.history.pushState({}, '', path);
+// Load content for a given virtual path using HTMX
+function loadContent(path) {
+  const HTML_PREFIX = '/html';
+  // Fallback route for unknown paths
+  const DEFAULT_ROUTE = '/home';
 
-  // Load the content using HTMX
   const contentDiv = document.getElementById('content');
-  if (contentDiv) {
-    contentDiv.setAttribute('hx-get', path);
-    htmx.trigger(contentDiv, 'htmx:load');
+  if (!contentDiv) return;
+
+  let htmlPath = path;
+  if (!path || path === '/') {
+    htmlPath = DEFAULT_ROUTE;
   }
+
+  htmlPath = HTML_PREFIX + htmlPath;
+
+  // Use HTMX's AJAX API to fetch content and swap it into the target
+  htmx.ajax('GET', htmlPath, { target: '#content', swap: 'innerHTML' });
 }
 
 // Handle browser back/forward buttons
 window.addEventListener('popstate', function (_event) {
   const path = window.location.pathname;
-  const contentDiv = document.getElementById('content');
-  if (contentDiv) {
-    contentDiv.setAttribute('hx-get', path);
-    htmx.trigger(contentDiv, 'htmx:load');
-  }
+  loadContent(path);
 });
 
 // Initialize navigation on page load
-document.addEventListener('DOMContentLoaded', function () {
-  // Set up HTMX event listeners
-  document.body.addEventListener('htmx:afterRequest', function (_event) {
-    // Update active navigation state
-    updateActiveNavigation();
-  });
-
-  // Initial navigation state
-  updateActiveNavigation();
-});
-
-// Update active navigation button styling
-function updateActiveNavigation() {
-  const currentPath = window.location.pathname;
-  const navButtons = document.querySelectorAll('.navbar');
-
-  navButtons.forEach(button => {
-    // Remove active class from all buttons
-    button.classList.remove('active');
-
-    // Add active class to current page button
-    if (button.textContent.toLowerCase() === 'home' && currentPath === '/') {
-      button.classList.add('active');
-    } else if (
-      button.textContent.toLowerCase() === 'blog' &&
-      currentPath === '/blog'
-    ) {
-      button.classList.add('active');
-    } else if (
-      button.textContent.toLowerCase() === 'projects' &&
-      currentPath === '/projects'
-    ) {
-      button.classList.add('active');
-    }
-  });
-}
-
-// Add active state styles to CSS
-const style = document.createElement('style');
-style.textContent = `
-    .navbar.active {
-        background-color: var(--accent-color) !important;
-        color: var(--global-background-color) !important;
-    }
-`;
-document.head.appendChild(style);
+// Script is loaded at end of <body>, so DOM and HTMX are both fully ready
+const path = window.location.pathname;
+loadContent(path);

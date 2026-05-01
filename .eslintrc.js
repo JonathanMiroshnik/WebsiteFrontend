@@ -11,7 +11,6 @@ module.exports = {
   },
   globals: {
     htmx: 'readonly',
-    navigateTo: 'readonly',
     addHTMLContent: 'readonly',
     resetStyles: 'readonly',
   },
