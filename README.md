@@ -61,12 +61,10 @@ npm install
 ```
 
 2. Run the development server:
+2. Run the development server:
 
 ```bash
-# Option A: Using Python (no dependencies needed)
-python3 -m http.server 8080
-
-# Option B: Using npx
+# Start the local static server (SPA routing is handled by serve.json)
 npx serve .
 ```
 
@@ -88,6 +86,9 @@ python3 -m http.server 8080
 ### Available Scripts
 
 ```bash
+# Start the local development server (SPA routing via serve.json)
+npm start
+
 # Run all linting and formatting checks
 npm run lint
 

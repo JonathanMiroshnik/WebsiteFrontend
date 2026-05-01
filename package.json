@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "eslint . --ext .js && prettier --check . && htmlhint *.html html/*.html html/blog/*.html html/templates/*.html && stylelint css/*.css",
     "lint:fix": "eslint --fix . --ext .js && prettier --write . && htmlhint --config .htmlhintrc *.html html/*.html html/blog/*.html html/templates/*.html",
+    "start": "npx serve .",
     "build": "echo 'Build verification complete - Static site ready for deployment'",
     "security": "npm audit",
     "ci": "npm run lint && npm run build"

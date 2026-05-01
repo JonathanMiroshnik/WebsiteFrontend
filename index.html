@@ -22,8 +22,6 @@
     <!-- Iconify for icons -->
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
 
-    <!-- Custom JavaScript for navigation -->
-    <!-- <script src="./js/navigation.js"></script> -->
 
     <!-- CSS -->
     <div id="css-container">
@@ -50,13 +48,13 @@
           data-height="24"
         ></span>
 
-        <a hx-get="/html/home.html" hx-target="#content" hx-push-url="/home"
+        <a hx-get="/html/home" hx-target="#content" hx-push-url="/"
           ><button class="navbar">Home</button></a
         >
-        <a hx-get="/html/blog.html" hx-target="#content" hx-push-url="/blog"
+        <a hx-get="/html/blog" hx-target="#content" hx-push-url="/blog"
           ><button class="navbar">Blog</button></a
         >
-        <a hx-get="/html/projects.html" hx-target="#content" hx-push-url="/projects"
+        <a hx-get="/html/projects" hx-target="#content" hx-push-url="/projects"
           ><button class="navbar">Projects</button></a
         >
         <a hx-get="/html/playground.html" hx-target="#content" hx-push-url="/playground"
@@ -67,7 +65,7 @@
 
     <!-- Main Content Area -->
     <main class="layout-main">
-      <div id="content" hx-get="/html/home.html" hx-trigger="load" hx-swap="innerHTML">
+      <div id="content" hx-swap="innerHTML">
         <!-- Content will be loaded here -->
       </div>
 
@@ -88,8 +86,11 @@
     </main>
 
     <!-- Footer/Contact Bar -->
-    <div class="layout-footer" hx-get="/html/footer.html" hx-trigger="load" hx-swap="innerHTML">
+    <div class="layout-footer" hx-get="/html/footer" hx-trigger="load" hx-swap="innerHTML">
       <!-- Footer content will be loaded here -->
     </div>
+
+    <!-- Custom JavaScript for navigation (loaded at end of body so DOM is ready) -->
+    <script src="/js/navigation.js"></script>
   </body>
 </html>
