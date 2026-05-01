@@ -218,6 +218,40 @@ textarea {
   background: var(--title-color);
 }
 
+/* ---------------------------------------------- Playground styles ---------------------------------------------- */
+.playground-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.playground-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border-separator-color);
+  border-radius: 8px;
+  background-color: var(--global-secondary-background-color);
+}
+
+.playground-section h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: var(--title-color);
+}
+
+.playground-result {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border-separator-color);
+  border-radius: 4px;
+  background-color: var(--global-background-color);
+  min-height: 50px;
+}
+
+.playground-result p {
+  margin: 0;
+  color: var(--description-color);
+}
+
 /* ---------------------------------------------- Dynamic content ---------------------------------------------- */
 
 @media (prefers-color-scheme: dark) {

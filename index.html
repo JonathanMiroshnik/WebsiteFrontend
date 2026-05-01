@@ -14,6 +14,11 @@
     <!-- HTMX for dynamic content loading -->
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"></script>
 
+    <!-- Allow cross-origin requests to the backend API -->
+    <script>
+      htmx.config.selfRequestsOnly = false;
+    </script>
+
     <!-- Iconify for icons -->
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
 
@@ -50,6 +55,9 @@
         >
         <a hx-get="/html/projects" hx-target="#content" hx-push-url="/projects"
           ><button class="navbar">Projects</button></a
+        >
+        <a hx-get="/html/playground.html" hx-target="#content" hx-push-url="/playground"
+          ><button class="navbar">Playground</button></a
         >
       </nav>
     </div>
