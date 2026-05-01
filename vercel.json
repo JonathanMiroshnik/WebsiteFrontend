@@ -36,7 +36,11 @@
       "dest": "/js/$1"
     },
     {
-      "src": "/html/(.*)",
+      "src": "/html/([^.]*)$",
+      "dest": "/html/$1.html"
+    },
+    {
+      "src": "/html/(.*\\.html)$",
       "dest": "/html/$1"
     },
     {
