@@ -52,10 +52,6 @@
       "dest": "/index.html"
     },
     {
-      "src": "/playground",
-      "dest": "/index.html"
-    },
-    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
