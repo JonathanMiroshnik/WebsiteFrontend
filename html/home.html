@@ -12,11 +12,15 @@
         </div>
       </div>
       <div class="home-image-section fade-in-up-delayed">
-        <img
-          src="../assets/mikudisreactsmall.png"
-          alt="Profile"
-          class="home-profile-image u-photo"
-        />
+        <picture>
+          <source srcset="../assets/mikudisreactsmall.webp" type="image/webp">
+          <img
+            src="../assets/mikudisreactsmall.png"
+            alt="Profile"
+            class="home-profile-image u-photo"
+            loading="lazy"
+          />
+        </picture>
       </div>
     </div>
   </div>
