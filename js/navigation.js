@@ -29,5 +29,11 @@ window.addEventListener('popstate', function (_event) {
 
 // Initialize navigation on page load
 // Script is loaded at end of <body>, so DOM and HTMX are both fully ready
-const path = window.location.pathname;
-loadContent(path);
+//
+// Only load content via AJAX if #content is empty (e.g. first visit to a deep link).
+// If content was inlined in index.html (home page), skip the AJAX call to avoid a double-load.
+const contentDiv = document.getElementById('content');
+if (contentDiv && contentDiv.children.length === 0) {
+  const path = window.location.pathname;
+  loadContent(path);
+}
